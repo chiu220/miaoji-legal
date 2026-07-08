@@ -3,29 +3,51 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>喵吉曆 — 法務資訊</title>
+<title>喵吉曆 — 你的每日決策日曆</title>
+<meta name="description" content="一隻博學的胖貓命理師,幫你把每一件行程都挑在好日子。每日分數、擇吉日、雙人合盤。">
 <link rel="stylesheet" href="style.css">
+<style>
+.hero { text-align: center; padding: 48px 16px 8px; }
+.hero .logo { font-size: 72px; }
+.hero h1 { font-size: 32px; margin: 12px 0 6px; }
+.hero .tagline { font-size: 17px; color: var(--muted); margin: 0; }
+.coming {
+  display: inline-block; margin-top: 18px; padding: 8px 20px;
+  background: var(--gold); color: #fff; border-radius: 999px;
+  font-weight: 700; font-size: 15px;
+}
+.features { list-style: none; padding: 0; margin: 8px 0 0; }
+.features li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.features li:last-child { border-bottom: none; }
+.features b { display: block; }
+.features span { color: var(--muted); font-size: 14px; }
+</style>
 </head>
 <body>
-<header class="site">
+<div class="hero">
   <div class="logo">🐱</div>
   <h1>喵吉曆</h1>
-  <p class="meta">你的每日決策日曆 · 法務資訊</p>
-  <nav class="toc">
-    <a href="privacy.html">隱私權政策</a>
-    <a href="terms.html">使用條款</a>
-  </nav>
-</header>
+  <p class="tagline">你的每日決策日曆 · 約人前先問本喵</p>
+  <span class="coming">Android 版即將上架,本喵先佔個位</span>
+</div>
 <main>
 <div class="card">
-  <p>這裡是「喵吉曆」App 的官方法務資訊頁面。</p>
+  <ul class="features">
+    <li><b>📅 個人化吉凶日曆</b><span>同一天,對你和對別人的顏色不一樣。用你的出生資料算,不是通用宜忌。</span></li>
+    <li><b>✨ 每日開獎</b><span>一個分數、一句敢講死的話,10 秒看完今天怎麼過。</span></li>
+    <li><b>🔍 擇吉日</b><span>簽約、搬家、告白、大日子,幫你從未來 30 天挑出最好的時辰。</span></li>
+    <li><b>😼 雙人合盤</b><span>輸入朋友生日,看今天適不適合約——毒舌貓幫你說實話。</span></li>
+  </ul>
+</div>
+<div class="card">
+  <p style="margin: 12px 0;"><b>法務資訊</b></p>
   <ul>
-    <li><a href="privacy.html">隱私權政策</a> — 我們如何處理你的出生資料與使用紀錄。</li>
+    <li><a href="privacy.html">隱私權政策</a> — 出生資料僅存你的裝置本機,不上傳。</li>
     <li><a href="terms.html">使用條款</a> — 服務性質、訂閱規則與免責聲明。</li>
   </ul>
   <p class="meta">聯絡信箱:<a href="mailto:fydbyc7@gmail.com">fydbyc7@gmail.com</a></p>
 </div>
 </main>
-<footer>喵吉曆 © 2026</footer>
+<footer>喵吉曆 © 2026 · 運勢與擇日結果為傳統民俗參考,重大決策請以專業意見為準</footer>
 </body>
 </html>
