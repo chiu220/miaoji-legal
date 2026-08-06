@@ -28,6 +28,17 @@
   .cta { text-align: center; }
   .cta p { font-size: 14px; color: #6b665d; margin-bottom: 12px; line-height: 1.7; }
   .cta a { display: inline-block; padding: 14px 34px; background: #c9a227; color: #fff; font-weight: 800; border-radius: 999px; text-decoration: none; font-size: 16px; }
+  .cta a.disabled { background: #d8d2c4; color: #fffdf8; cursor: default; }
+  /* 商店選單:點「下載」才展開,不預先攤開兩顆按鈕佔版面 */
+  #stores { display: none; gap: 10px; flex-direction: column; align-items: center; margin-top: 4px; }
+  #stores.open { display: flex; animation: pop .2s ease; }
+  @keyframes pop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  #stores a { display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; max-width: 300px; padding: 13px 20px; border-radius: 14px;
+    font-weight: 800; font-size: 15px; text-decoration: none; }
+  #stores a.play { background: #2b2b2b; color: #fff; }
+  #stores a.ios { background: #efe9dc; color: #9a9184; cursor: default; }
+  #stores .soon { font-size: 11.5px; font-weight: 600; opacity: .85; }
   .note { font-size: 11.5px; color: #9a9184; margin-top: 10px; text-align: center; line-height: 1.6; }
   .cat { width: 130px; display: block; margin: 0 auto 8px; }
 </style>
@@ -63,9 +74,33 @@
 
     <div class="card cta hidden" id="cta">
       <p>這只是通用盤。<br /><b>加上出生時辰</b>,分數、吉時、每天的錦囊全部變成你專屬的——還有一隻記得你大日子的貓。</p>
-      <a id="store" href="#">下載喵吉曆 App</a>
+      <a id="store" href="#" role="button" aria-expanded="false" aria-controls="stores">下載喵吉曆 App</a>
+      <div id="stores">
+        <a class="play" href="https://play.google.com/store/apps/details?id=com.ming.miaojili">
+          <span>Google Play</span>
+        </a>
+        <a class="ios" href="#" onclick="return false">
+          <span>App Store</span><span class="soon">即將推出</span>
+        </a>
+      </div>
       <p class="note">排盤在你的裝置上完成,生日不會被上傳或儲存。</p>
     </div>
   </div>
+<script>
+  // 點「下載」展開兩個商店選項。不直接放兩顆按鈕的理由:
+  // 這頁是分享卡 QR 的落地頁,主視覺是「輸生日看今天」,
+  // 一開始就攤開兩顆按鈕會跟主流程搶注意力。
+  (function () {
+    var btn = document.getElementById('store')
+    var box = document.getElementById('stores')
+    if (!btn || !box) return
+    btn.addEventListener('click', function (e) {
+      e.preventDefault()
+      var open = box.classList.toggle('open')
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false')
+      btn.textContent = open ? '選一個商店' : '下載喵吉曆 App'
+    })
+  })()
+</script>
 </body>
 </html>
