@@ -13,6 +13,8 @@
   .card { background: #fffdf8; border: 1px solid #e5dfd2; border-radius: 18px; padding: 18px 16px; margin-bottom: 14px; }
   label { font-size: 13px; font-weight: 700; color: #6b665d; display: block; margin: 10px 0 6px; }
   input, select { width: 100%; padding: 12px; font-size: 16px; border: 1.5px solid #e5dfd2; border-radius: 12px; background: #fff; }
+  input::placeholder { color: #b5ad9b; }
+  input:focus, select:focus { outline: none; border-color: #c9a227; }
   button.go { width: 100%; margin-top: 16px; padding: 14px; font-size: 16px; font-weight: 800; color: #fff; background: #c9a227; border: none; border-radius: 999px; }
   .hidden { display: none; }
   .folded { opacity: .55; }
@@ -33,7 +35,7 @@
   .site-links { text-align: center; font-size: 12.5px; color: #9a9184; margin-top: 6px; }
   .site-links a { color: #9a9184; }
 </style>
-  <script type="module" crossorigin src="./assets/index-SJ6WWXPu.js"></script>
+  <script type="module" crossorigin src="./assets/index-AL_SM-cF.js"></script>
 </head>
 <body>
   <div class="wrap">
@@ -43,7 +45,8 @@
 
     <div class="card" id="form-card">
       <label for="birth">你的生日</label>
-      <input type="date" id="birth" min="1930-01-01" max="2020-12-31" />
+      <!-- 直接打數字(命主 2026-09-22:日期選擇器要滑到自己生日太麻煩);邊打邊補斜線 -->
+      <input type="text" id="birth" inputmode="numeric" autocomplete="bday" placeholder="1900/01/01" maxlength="10" />
       <label for="gender">性別(排盤用)</label>
       <select id="gender">
         <option value="female">女</option>
