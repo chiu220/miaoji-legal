@@ -30,10 +30,13 @@
 }
 .try-sub { font-size: 13px; color: var(--muted); margin-top: 8px; }
 .features { list-style: none; padding: 0; margin: 8px 0 0; }
-.features li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.features li { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+/* 圖示用 app 自己的手繪果凍磚(DoodleIcons 原樣輸出),不用系統 emoji(2026-10-04) */
+.features li img { width: 44px; height: 44px; flex-shrink: 0; margin-top: 1px; }
+.features li div { min-width: 0; }
 .features li:last-child { border-bottom: none; }
 .features b { display: block; }
-.features span { color: var(--muted); font-size: 14px; }
+.features span { color: var(--muted); font-size: 14px; line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -51,12 +54,13 @@
 <main>
 <div class="card">
   <ul class="features">
-    <li><b>📅 個人化吉凶日曆</b><span>同一天,對你和對別人的顏色不一樣。用你的出生資料算,不是通用宜忌。</span></li>
-    <li><b>✨ 每日開獎</b><span>一個分數、一句敢講死的話,10 秒看完今天怎麼過。</span></li>
-    <li><b>🔍 擇吉日</b><span>簽約、搬家、告白、大日子,幫你從未來 30 天挑出最好的時辰。</span></li>
-    <li><b>😼 雙人合盤</b><span>輸入朋友生日,看你們合不合、今天的日子怎麼牽動你們倆。</span></li>
-    <li><b>📔 日記本</b><span>記下今天,配上當天的分數與貼紙,可愛的紙才寫得下去。</span></li>
-    <li><b>📱 桌面小工具</b><span>四款可選,不開 app 也能一眼看到今天。</span></li>
+    <li><img src="icons/tab-calendar.svg" alt="" width="44" height="44"><div><b>個人化吉凶日曆</b><span>同一天,對你和對別人的吉凶不一樣。用你的八字與紫微排算,不是通用宜忌;每一格的貓掌,就是那天的吉凶。</span></div></li>
+    <li><img src="icons/tab-fortune.svg" alt="" width="44" height="44"><div><b>每日錦囊</b><span>每天拆一卷:一個分數、四項運勢、今天該避開什麼。每一分怎麼加減都看得到理由,幾點順、幾點先避開也寫給你。</span></div></li>
+    <li><img src="icons/tab-pick.svg" alt="" width="44" height="44"><div><b>擇吉日</b><span>搬家、簽約、面試、開業、旅行、約會、嫁娶等十多種大事,從未來幾週到一整年,挑出最適合的日子,連吉時一起告訴你。</span></div></li>
+    <li><img src="icons/tab-match.svg" alt="" width="44" height="44"><div><b>雙人合盤與雙人日曆</b><span>輸入對方生日,看你們合不合;雙人日曆把兩人都順的日子標出來,約會挑哪天一眼就知道。</span></div></li>
+    <li><img src="icons/pin.svg" alt="" width="44" height="44"><div><b>釘住大日子</b><span>重要的日子釘起來,倒數給你看;前一晚提醒你,當天早上的喵提醒也會一起帶到。</span></div></li>
+    <li><img src="icons/tab-journal.svg" alt="" width="44" height="44"><div><b>日記本</b><span>記下今天,配上當天的分數和貼紙,還能一鍵貼上當日命盤;順手對個答案,久了就知道本喵準不準。</span></div></li>
+    <li><img src="icons/paw.svg" alt="" width="44" height="44"><div><b>桌面小工具</b><span>完整卡、橫條、今日四柱、雙人四款,不開 app 也能一眼看到今天的分數與吉時。</span></div></li>
   </ul>
 </div>
 <div class="card">
