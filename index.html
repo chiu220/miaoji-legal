@@ -11,11 +11,10 @@
 .hero .logo { font-size: 72px; }
 .hero h1 { font-size: 32px; margin: 12px 0 6px; }
 .hero .tagline { font-size: 17px; color: var(--muted); margin: 0; }
-.coming {
-  display: inline-block; margin-top: 18px; padding: 8px 20px;
-  background: #efe8d8; color: #6b665d; border-radius: 999px;
-  font-weight: 700; font-size: 15px;
-}
+.store-badge { display: inline-block; margin-top: 14px; line-height: 0; }
+/* Google 官方徽章原圖(含規定的留白),不改色、不裁切;寬 216 ≈ 高 84 */
+.store-badge img { width: 216px; height: auto; }
+.store-sub { font-size: 13px; color: var(--muted); margin: 2px 0 6px; }
 .try-cta {
   display: inline-block; margin-top: 12px; padding: 14px 34px;
   background: var(--gold); color: #fff; border-radius: 999px;
@@ -34,8 +33,10 @@
   <div class="logo">🐱</div>
   <h1>喵吉曆</h1>
   <p class="tagline">你的每日決策日曆 · 約人前先問本喵</p>
-  <span class="coming">Android 版即將上架,本喵先佔個位</span>
-  <br>
+  <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.ming.miaojili" rel="noopener">
+    <img src="google-play-badge.png" alt="立即下載 — Google Play" width="216" height="84">
+  </a>
+  <p class="store-sub">Android 版已上架</p>
   <a class="try-cta" href="try/">🔮 先讓本喵免費看你的今天</a>
   <p class="try-sub">輸入生日就好,不用下載、不用註冊</p>
 </div>
@@ -59,6 +60,6 @@
   <p class="meta">聯絡信箱:<a href="mailto:contact@nuralog.ai">contact@nuralog.ai</a></p>
 </div>
 </main>
-<footer>喵吉曆 © 2026 · 運勢與擇日結果為傳統民俗參考,重大決策請以專業意見為準</footer>
+<footer>喵吉曆 © 2026 · 運勢與擇日結果為傳統民俗參考,重大決策請以專業意見為準<br>Google Play 和 Google Play 標誌是 Google LLC 的商標。</footer>
 </body>
 </html>
