@@ -15,7 +15,12 @@
   input, select { width: 100%; padding: 12px; font-size: 16px; border: 1.5px solid #e5dfd2; border-radius: 12px; background: #fff; }
   input::placeholder { color: #b5ad9b; }
   input:focus, select:focus { outline: none; border-color: #c9a227; }
-  button.go { width: 100%; margin-top: 16px; padding: 14px; font-size: 16px; font-weight: 800; color: #fff; background: #c9a227; border: none; border-radius: 999px; }
+  /* 跟 app「寫日記」同款手繪貼紙鈕:紙底 + 墨線框 + 墨字 + 立體陰影,彩色水晶球當焦點(2026-10-04) */
+  button.go { width: 100%; margin-top: 18px; padding: 12px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    font: inherit; font-size: 16px; font-weight: 800; color: #352f2a; background: #fffdf8; border: 2px solid #352f2a; border-radius: 999px;
+    box-shadow: 0 3px 0 rgba(53, 47, 42, .16), 0 7px 16px rgba(53, 47, 42, .18); cursor: pointer; transition: transform .08s ease, box-shadow .08s ease; }
+  button.go:active { transform: scale(.97) translateY(1px); box-shadow: 0 1px 0 rgba(53, 47, 42, .16), 0 4px 10px rgba(53, 47, 42, .16); }
+  button.go svg { width: 22px; height: 25px; flex-shrink: 0; }
   .hidden { display: none; }
   .folded { opacity: .55; }
   #err { color: #c0392b; font-size: 13px; margin-top: 8px; }
@@ -53,7 +58,7 @@
         <option value="male">男</option>
         <option value="na">不方便說</option>
       </select>
-      <button class="go" id="go">🔮 本喵幫你看今天</button>
+      <button class="go" id="go"><svg viewBox="12 6 40 46" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="27" r="12" fill="#b9a7de"/><path d="M24 45h16M27 50h10M24 40c5 3 11 3 16 0"/><path d="M32 15v-6M42 19l4-4M22 19l-4-4"/><path d="M27 27c2.5-3.4 7.5-3.4 10 0" stroke="#fff9ed" stroke-width="2.2"/></g></svg>本喵幫你看今天</button>
       <p id="err"></p>
     </div>
 
