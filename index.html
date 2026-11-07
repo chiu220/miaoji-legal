@@ -11,9 +11,12 @@
 .hero .logo { display: block; width: 128px; height: auto; margin: 0 auto; } /* app 同一隻喵大師(揮手打招呼) */
 .hero h1 { font-size: 32px; margin: 12px 0 6px; }
 .hero .tagline { font-size: 17px; color: var(--muted); margin: 0; }
-.store-badge { display: inline-block; margin-top: 14px; line-height: 0; }
+.stores { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 14px; }
+.store-badge { display: inline-block; line-height: 0; }
 /* Google 官方徽章原圖(含規定的留白),不改色、不裁切;寬 216 ≈ 高 84 */
 .store-badge img { width: 216px; height: auto; }
+/* Apple 官方徽章(developer.apple.com 原檔,不含留白):高 56 對齊 Google 徽章本體,四周留白 ≥ 1/4 高 */
+.store-badge img.apple { width: auto; height: 56px; margin: 14px; }
 .store-sub { font-size: 13px; color: var(--muted); margin: 2px 0 6px; }
 /* 跟 app「寫日記」同一款手繪貼紙鈕:紙底 + 墨線框 + 墨字 + 立體陰影,彩色小圖示當焦點 */
 .try-cta {
@@ -44,10 +47,15 @@
   <img class="logo" src="cat-greeting.webp" alt="喵大師在跟你打招呼" width="128" height="192">
   <h1>喵吉曆</h1>
   <p class="tagline">你的每日決策日曆 · 約人前先問本喵</p>
-  <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.ming.miaojili" rel="noopener">
-    <img src="google-play-badge.png" alt="立即下載 — Google Play" width="216" height="84">
-  </a>
-  <p class="store-sub">Android 版已上架</p>
+  <div class="stores">
+    <a class="store-badge" href="https://apps.apple.com/app/id6826741300" rel="noopener">
+      <img class="apple" src="app-store-badge.svg" alt="在 App Store 下載" width="168" height="56">
+    </a>
+    <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.ming.miaojili" rel="noopener">
+      <img src="google-play-badge.png" alt="立即下載 — Google Play" width="216" height="84">
+    </a>
+  </div>
+  <p class="store-sub">iPhone、Android 都已上架</p>
   <a class="try-cta" href="try/"><svg viewBox="12 6 40 46" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="27" r="12" fill="#b9a7de"/><path d="M24 45h16M27 50h10M24 40c5 3 11 3 16 0"/><path d="M32 15v-6M42 19l4-4M22 19l-4-4"/><path d="M27 27c2.5-3.4 7.5-3.4 10 0" stroke="#fff9ed" stroke-width="2.2"/></g></svg>先讓本喵免費看你的今天</a>
   <p class="try-sub">輸入生日就好,不用下載、不用註冊</p>
 </div>
@@ -72,6 +80,6 @@
   <p class="meta">聯絡信箱:<a href="mailto:contact@nuralog.ai">contact@nuralog.ai</a></p>
 </div>
 </main>
-<footer>喵吉曆 © 2026 · 運勢與擇日結果為傳統民俗參考,重大決策請以專業意見為準<br>Google Play 和 Google Play 標誌是 Google LLC 的商標。</footer>
+<footer>喵吉曆 © 2026 · 運勢與擇日結果為傳統民俗參考,重大決策請以專業意見為準<br>Apple 和 Apple 標誌是 Apple Inc. 在美國及其他國家和地區註冊的商標,App Store 是 Apple Inc. 的服務標誌。Google Play 和 Google Play 標誌是 Google LLC 的商標。</footer>
 </body>
 </html>
