@@ -4,59 +4,109 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>喵吉曆 — 本喵先幫你看今天</title>
+<meta name="theme-color" content="#f6f0e4" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet" />
+<!-- 2026-11-18 改成跟繪本測驗、官網同一套(宋體、紙紋、金色細線);元素 id 跟 main.ts 對應,不要改名 -->
 <style>
-  * { box-sizing: border-box; margin: 0; }
-  body { font-family: "Noto Sans TC", "PingFang TC", sans-serif; background: #f4efe5; color: #2b2b2b; min-height: 100vh; display: flex; justify-content: center; }
-  .wrap { width: 100%; max-width: 430px; padding: 28px 20px 48px; }
-  h1 { font-size: 26px; margin-bottom: 4px; }
-  .sub { color: #6b665d; font-size: 14px; margin-bottom: 20px; }
-  .card { background: #fffdf8; border: 1px solid #e5dfd2; border-radius: 18px; padding: 18px 16px; margin-bottom: 14px; }
-  label { font-size: 13px; font-weight: 700; color: #6b665d; display: block; margin: 10px 0 6px; }
-  input, select { width: 100%; padding: 12px; font-size: 16px; border: 1.5px solid #e5dfd2; border-radius: 12px; background: #fff; }
-  input::placeholder { color: #b5ad9b; }
-  input:focus, select:focus { outline: none; border-color: #c9a227; }
-  /* 跟 app「寫日記」同款手繪貼紙鈕:紙底 + 墨線框 + 墨字 + 立體陰影,彩色水晶球當焦點(2026-10-04) */
-  button.go { width: 100%; margin-top: 18px; padding: 12px; display: flex; align-items: center; justify-content: center; gap: 8px;
-    font: inherit; font-size: 16px; font-weight: 800; color: #352f2a; background: #fffdf8; border: 2px solid #352f2a; border-radius: 999px;
-    box-shadow: 0 3px 0 rgba(53, 47, 42, .16), 0 7px 16px rgba(53, 47, 42, .18); cursor: pointer; transition: transform .08s ease, box-shadow .08s ease; }
-  button.go:active { transform: scale(.97) translateY(1px); box-shadow: 0 1px 0 rgba(53, 47, 42, .16), 0 4px 10px rgba(53, 47, 42, .16); }
+  :root { --paper: #f6f0e4; --card: #fffdf8; --ink: #3a322b; --sub: #7a7064; --hair: rgba(58, 50, 43, .14); --gold: #b98d2c; --gold2: #d9b45a;
+    --serif: "Noto Serif TC", "Songti TC", serif; --sans: "PingFang TC", "Noto Sans TC", sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { font-family: var(--serif); background: var(--paper); color: var(--ink); min-height: 100vh; display: flex; justify-content: center; -webkit-font-smoothing: antialiased; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .28 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  body::after { content: ""; position: fixed; inset: -20%; z-index: -1; pointer-events: none;
+    background: radial-gradient(36% 28% at 50% 18%, rgba(185, 167, 222, .22), transparent 70%), radial-gradient(30% 24% at 80% 80%, rgba(217, 180, 90, .14), transparent 70%); }
+  .wrap { width: 100%; max-width: 440px; padding: 28px 20px 48px; }
+  @keyframes up { from { opacity: 0; transform: translateY(16px); } }
+  @keyframes float { 50% { transform: translateY(-8px); } }
+
+  .head { text-align: center; animation: up .8s both; }
+  .cat { width: 128px; display: block; margin: 0 auto 6px; animation: float 3.2s ease-in-out infinite; filter: drop-shadow(0 14px 18px rgba(58, 50, 43, .16)); }
+  .kicker { font: 700 12.5px var(--sans); letter-spacing: .32em; color: var(--gold); margin-bottom: 8px; }
+  h1 { font-size: 34px; font-weight: 900; line-height: 1.3; letter-spacing: .04em; }
+  .sub { color: var(--sub); font-size: 15.5px; line-height: 1.9; margin: 10px 0 24px; }
+
+  .card { background: var(--card); border: 1px solid var(--hair); border-radius: 26px; padding: 22px 20px; margin-bottom: 16px; box-shadow: 0 18px 40px rgba(58, 50, 43, .08); }
+  #form-card { animation: up .8s .15s both; transition: opacity .4s; }
+  label, .label { font: 700 12.5px var(--sans); letter-spacing: .16em; color: var(--sub); display: block; margin: 4px 0 8px; }
+  input { width: 100%; padding: 14px 16px; font: 500 20px var(--serif); letter-spacing: .08em; text-align: center; color: var(--ink);
+    border: 1px solid var(--hair); border-radius: 16px; background: #fff; margin-bottom: 18px; }
+  input::placeholder { color: #c4baa9; }
+  input:focus { outline: none; border-color: var(--gold2); box-shadow: 0 0 0 4px rgba(217, 180, 90, .18); }
+  /* 性別:三顆按鈕取代系統下拉;真正的值還是放在隱藏的 select(main.ts 讀它) */
+  #gender { display: none; }
+  .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 6px; }
+  .seg button { font: 500 15px var(--serif); color: var(--ink); background: #fff; border: 1px solid var(--hair); border-radius: 14px; padding: 11px 0; cursor: pointer; transition: all .2s; }
+  .seg button.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  button.go { width: 100%; margin-top: 18px; padding: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+    font: 700 16.5px var(--serif); letter-spacing: .1em; color: var(--paper); background: var(--ink); border: 0; border-radius: 999px;
+    box-shadow: 0 10px 24px rgba(58, 50, 43, .22); transition: transform .1s; }
+  button.go:active { transform: scale(.97); }
   button.go svg { width: 22px; height: 25px; flex-shrink: 0; }
-  .hidden { display: none; }
-  .folded { opacity: .55; }
-  #err { color: #c0392b; font-size: 13px; margin-top: 8px; }
-  .score-row { display: flex; align-items: baseline; gap: 10px; }
-  #score { font-size: 56px; font-weight: 800; }
-  .level { font-size: 14px; font-weight: 800; color: #fff; padding: 3px 12px; border-radius: 999px; background: #b5ad9b; }
-  .level.ji { background: #c0392b; } .level.shen { background: #34495e; }
-  #ganzhi { color: #6b665d; font-size: 13px; margin: 6px 0 10px; }
-  #quote { font-size: 15px; line-height: 1.7; margin-bottom: 10px; }
-  #omen { font-size: 13.5px; color: #8a6a08; line-height: 1.6; margin-bottom: 8px; }
-  #lucky { font-size: 13px; font-weight: 700; color: #6e8b5e; }
-  .cta { text-align: center; }
-  .cta p { font-size: 14px; color: #6b665d; margin-bottom: 12px; line-height: 1.7; }
-  .cta a { display: inline-block; padding: 14px 34px; background: #c9a227; color: #fff; font-weight: 800; border-radius: 999px; text-decoration: none; font-size: 16px; }
+  .hidden { display: none !important; }
+  .folded { opacity: .5; }
+  #err { color: #b04a3a; font: 500 13px var(--sans); margin-top: 10px; text-align: center; min-height: 1em; }
+
+  /* 結果:像拆開一卷錦囊 */
+  #result { text-align: center; padding: 26px 22px 24px; animation: unroll .9s cubic-bezier(.2, .9, .3, 1.1) both; transform-origin: top center; position: relative; overflow: hidden; }
+  @keyframes unroll { from { opacity: 0; transform: perspective(800px) rotateX(-24deg) translateY(20px) scale(.96); } }
+  #result::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 160px; background: radial-gradient(60% 100% at 50% 0%, rgba(217, 180, 90, .2), transparent 75%); pointer-events: none; }
+  #result > * { position: relative; animation: up .7s both; }
+  .score-row { display: flex; align-items: baseline; justify-content: center; gap: 8px; animation-delay: .3s !important; }
+  #score { font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -.02em; }
+  .score-row > span:nth-child(2) { font-size: 18px; font-weight: 700; color: var(--sub); }
+  .level { font: 800 14px var(--sans); color: #fff; padding: 3px 12px; border-radius: 999px; background: #b5ad9b; align-self: center; margin-left: 4px; }
+  .level.ji { background: #b5442f; } .level.shen { background: #44546a; }
+  #paws { display: block; width: 100%; font-size: 15px; letter-spacing: .2em; }
+  .score-row { flex-wrap: wrap; }
+  #ganzhi { font: 500 12.5px var(--sans); color: var(--sub); margin: 10px 0 16px; letter-spacing: .04em; animation-delay: .45s !important; }
+  .rule { height: 1px; background: linear-gradient(90deg, transparent, var(--gold2), transparent); margin: 0 0 16px; }
+  #quote { font-size: 18px; font-weight: 700; line-height: 1.85; margin-bottom: 14px; animation-delay: .6s !important; }
+  #omen { font-size: 14.5px; line-height: 1.8; color: #8a6a08; margin-bottom: 10px; animation-delay: .75s !important; }
+  #lucky { display: inline-block; font: 700 13px var(--sans); color: #4f6e43; background: rgba(110, 139, 94, .12); padding: 6px 14px; border-radius: 999px; animation-delay: .9s !important; }
+
+  .cta { text-align: center; animation: up .8s 1s both; }
+  .cta p { font-size: 15px; color: var(--sub); margin-bottom: 16px; line-height: 1.9; }
+  .cta p b { color: var(--ink); }
   .cta .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .cta a { display: inline-block; padding: 14px 30px; background: var(--gold); color: #fff; font: 700 15.5px var(--serif); letter-spacing: .08em; border-radius: 999px; text-decoration: none; box-shadow: 0 10px 22px rgba(185, 141, 44, .28); }
   .cta a.hidden { display: none; }
-  .note { font-size: 11.5px; color: #9a9184; margin-top: 10px; text-align: center; line-height: 1.6; }
-  .cat { width: 130px; display: block; margin: 0 auto 8px; }
-  .site-links { text-align: center; font-size: 12.5px; color: #9a9184; margin-top: 6px; }
-  .site-links a { color: #9a9184; }
+  .cta .note, .note { font: 500 11.5px var(--sans); color: #a0968a; margin-top: 12px; text-align: center; line-height: 1.7; }
+
+  .quiz-link { display: flex; align-items: center; gap: 14px; margin: 6px 0 18px; padding: 12px; border-radius: 20px; background: #262748; color: #f6f0e4; text-decoration: none; animation: up .8s .3s both; }
+  .quiz-link img { width: 92px; height: 62px; object-fit: cover; border-radius: 12px; flex: none; }
+  .quiz-link b { display: block; font-size: 16px; font-weight: 900; }
+  .quiz-link span { font: 500 12.5px var(--sans); color: rgba(246, 240, 228, .7); }
+  .quiz-link i { margin-left: auto; font-style: normal; color: var(--gold2); font-size: 18px; padding-right: 6px; }
+  .site-links { text-align: center; font: 500 12.5px var(--sans); color: #a0968a; margin-top: 8px; }
+  .site-links a { color: #a0968a; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
 </style>
   <script type="module" crossorigin src="./assets/main-DKmfoBD4.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
 </head>
 <body>
   <div class="wrap">
-    <img class="cat" src="./cat/cat-crystal.webp" alt="喵大師" onerror="this.style.display='none'" />
-    <h1>喵吉曆</h1>
-    <p class="sub">每日運勢 × 擇日,陪你過好每一天。先讓本喵免費看你的今天:</p>
+    <div class="head">
+      <img class="cat" src="./cat/cat-crystal.webp" alt="喵大師" onerror="this.style.display='none'" />
+      <div class="kicker">喵吉曆 · 免費試算</div>
+      <h1>先讓本喵<br />看看你的今天</h1>
+      <p class="sub">只要生日,不用下載、不用註冊。<br />今天幾分、幾點順,馬上告訴你。</p>
+    </div>
 
     <div class="card" id="form-card">
       <label for="birth">你的生日</label>
       <!-- 直接打數字(命主 2026-09-22:日期選擇器要滑到自己生日太麻煩);邊打邊補斜線 -->
       <input type="text" id="birth" inputmode="numeric" autocomplete="bday" placeholder="1900/01/01" maxlength="10" />
-      <label for="gender">性別(排盤用)</label>
-      <select id="gender">
+      <span class="label">性別(排盤用)</span>
+      <div class="seg" id="seg">
+        <button type="button" data-v="female" class="on">女</button>
+        <button type="button" data-v="male">男</button>
+        <button type="button" data-v="na">不方便說</button>
+      </div>
+      <select id="gender" aria-hidden="true" tabindex="-1">
         <option value="female">女</option>
         <option value="male">男</option>
         <option value="na">不方便說</option>
@@ -69,18 +119,33 @@
     <div class="card hidden" id="result">
       <div class="score-row"><span id="score">--</span><span>分</span><span class="level" id="level">平</span><span id="paws"></span></div>
       <p id="ganzhi"></p>
+      <div class="rule"></div>
       <p id="quote"></p>
       <p id="omen"></p>
       <p id="lucky"></p>
     </div>
 
     <div class="card cta hidden" id="cta">
-      <p>這只是通用盤。<br /><b>加上出生時辰</b>,分數、吉時、每天的錦囊全部變成你專屬的——還有一隻記得你大日子的貓。</p>
+      <p>這只是通用盤。<br /><b>加上出生時辰</b>,分數、吉時、每天的錦囊<br />全部變成你專屬的——還有一隻記得你大日子的貓。</p>
       <div class="stores"><a id="store" href="#">下載喵吉曆 App</a><a id="store2" class="hidden" href="#">Google Play</a></div>
       <p class="note">排盤在你的裝置上完成,生日不會被上傳或儲存。</p>
     </div>
 
+    <a class="quiz-link" href="./quiz/">
+      <img src="./quiz/scenes/12-ticket.webp" alt="" />
+      <div><b>陪喵大師過一天</b><span>繪本心理測驗 · 你是哪種時機貓</span></div>
+      <i>→</i>
+    </a>
+
     <p class="site-links"><a href="../">喵吉曆官網</a> · <a href="../privacy.html">隱私權政策</a> · <a href="../terms.html">使用條款</a></p>
   </div>
+  <script>
+    // 性別三顆按鈕 → 寫回隱藏的 select(main.ts 讀 select 的值)
+    document.getElementById('seg').addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return
+      document.querySelectorAll('#seg button').forEach(x => x.classList.toggle('on', x === b))
+      document.getElementById('gender').value = b.dataset.v
+    })
+  </script>
 </body>
 </html>
