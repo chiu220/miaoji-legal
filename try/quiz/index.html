@@ -183,14 +183,33 @@
   .sheet-box .btn { width: 100%; font-size: 15px; padding: 12px; }
   .sheet-box .again { margin-top: 0; }
 
+  /* 入場:瀏覽器規定要先點一下才能出聲,所以先請使用者「打開繪本」,音樂和封面動畫一起開始 */
+  .gate { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; cursor: pointer;
+    background: radial-gradient(60% 45% at 50% 45%, #fbf6ec, var(--paper)); transition: opacity 1.2s ease, filter 1.2s ease, visibility 1.2s; text-align: center; padding: 24px; }
+  .gate.gone { opacity: 0; filter: blur(8px); visibility: hidden; pointer-events: none; }
+  .gate svg { width: 46px; height: 46px; color: var(--gold); animation: float 2.6s ease-in-out infinite; }
+  .gate b { font-size: 22px; font-weight: 900; letter-spacing: .14em; }
+  .gate span { font: 500 13px var(--sans); color: var(--sub); letter-spacing: .12em; }
+  .gate i { width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--gold2); position: absolute; animation: ripple2 2.4s ease-out infinite; font-style: normal; }
+  @keyframes ripple2 { from { transform: scale(.6); opacity: .8; } to { transform: scale(3.2); opacity: 0; } }
+  .gate .ring-wrap { position: relative; display: grid; place-items: center; width: 80px; height: 80px; }
+  body:not(.opened) .cover * { animation-play-state: paused !important; }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
 </style>
-  <script type="module" crossorigin src="../assets/quiz-D9W_PSGg.js"></script>
+  <script type="module" crossorigin src="../assets/quiz-C9JnNwtM.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/modulepreload-polyfill-B5Qt9EMX.js">
 </head>
 <body>
+  <div class="gate" id="gate" role="button" tabindex="0" aria-label="打開繪本">
+    <div class="ring-wrap"><i></i><i style="animation-delay:1.2s"></i>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="2.5" y="14" width="5" height="7" rx="2"/><rect x="16.5" y="14" width="5" height="7" rx="2"/></svg>
+    </div>
+    <b>點一下,打開繪本</b>
+    <span>戴上耳機,聲音會比較好聽</span>
+  </div>
   <div class="glow"></div>
   <canvas id="dust"></canvas>
   <canvas id="fx"></canvas>
