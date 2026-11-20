@@ -2,6 +2,8 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8" />
+  <!-- http 一律轉 https(2026-11-20:http 版網址列出現「不安全」,iOS 長按存圖、分享到 App 都會失效) -->
+  <script>if (location.protocol === 'http:' && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) location.replace('https:' + location.href.slice(5))</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>喵吉曆 — 本喵先幫你看今天</title>
 <meta name="theme-color" content="#f6f0e4" />
@@ -84,7 +86,7 @@
   .site-links a { color: #a0968a; }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
 </style>
-  <script type="module" crossorigin src="./assets/main-DKmfoBD4.js"></script>
+  <script type="module" crossorigin src="./assets/main-CBQsXACU.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
 </head>
 <body>

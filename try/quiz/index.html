@@ -2,6 +2,8 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8" />
+  <!-- http 一律轉 https(2026-11-20:http 版網址列出現「不安全」,iOS 長按存圖、分享到 App 都會失效) -->
+  <script>if (location.protocol === 'http:' && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) location.replace('https:' + location.href.slice(5))</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>陪喵大師過一天 — 你是哪一種時機貓?</title>
 <meta name="description" content="繪本心理測驗:陪喵大師過完一天,12 個小選擇,看出你是衝刺貓、守候貓、軍師貓、直覺貓、熱鬧貓,還是猶豫貓。" />
@@ -199,7 +201,7 @@
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
 </style>
-  <script type="module" crossorigin src="../assets/quiz-C9JnNwtM.js"></script>
+  <script type="module" crossorigin src="../assets/quiz-C8NHtXyo.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/modulepreload-polyfill-B5Qt9EMX.js">
 </head>
 <body>
