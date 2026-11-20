@@ -99,6 +99,14 @@
   @keyframes pageIn { from { opacity: 0; filter: blur(2px); } }
   @keyframes pageOut { to { transform: rotateY(-100deg); opacity: .5; } }
   .page .art { aspect-ratio: 5 / 4; flex: none; }
+  /* 瀏覽器上下工具列很高時(2026-11-20 命主手機:選項掉到畫面外),插圖照可見高度縮,選項整排留在畫面內 */
+  .page .art { aspect-ratio: auto; height: min(80vw, 368px, 38svh); }
+  @media (max-height: 760px) {
+    .story p { line-height: 1.75; }
+    .story .ask { margin-top: 4px; }
+    .choices { padding-top: 14px; gap: 8px; }
+    .choice { min-height: 66px; padding: 8px 12px; }
+  }
   .folio { font: 700 12px var(--sans); letter-spacing: .3em; color: var(--gold); text-align: center; margin: 0 0 12px; }
   .story { padding: 0 26px; text-align: center; }
   .story p { font-size: 18.5px; line-height: 1.9; font-weight: 500; }
