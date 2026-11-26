@@ -83,6 +83,11 @@
   .cta .badge:active { transform: scale(.96); }
   .cta .badge img { height: min(55px, 7.94svh); width: auto; }
   .cta .badge img.apple { height: min(42px, 6.1svh); }
+  .qrfoot { display: flex; align-items: center; gap: 12px; margin-top: min(14px, 2svh); padding-top: min(12px, 1.7svh); border-top: 1px dashed var(--hair); text-align: left; }
+  .qrfoot img { width: min(76px, 10.4svh); height: min(76px, 10.4svh); flex: none; background: #fff; border-radius: 12px; padding: 6px; box-shadow: 0 4px 12px rgba(58, 50, 43, .08); }
+  .qrfoot b { display: block; font: 700 min(15px, 2.3svh)/1.4 var(--serif); color: #a8915a; }
+  .qrfoot strong { display: block; font: 700 min(13.5px, 2.05svh)/1.5 var(--sans); color: #6b665d; }
+  .qrfoot small { display: block; font: 500 min(11.5px, 1.8svh)/1.5 var(--sans); color: #8d867a; }
   .cta .note, .note { font: 500 11px var(--sans); color: #a0968a; margin-top: min(10px, 1.4svh); text-align: center; line-height: 1.7; }
 
   .quiz-link { display: flex; align-items: center; gap: 12px; padding: min(10px, 1.4svh) 12px; border-radius: 20px; background: #262748; color: #f6f0e4; text-decoration: none; animation: up .8s .3s both; }
@@ -93,15 +98,16 @@
   .site-links { text-align: center; font: 500 12px var(--sans); color: #a0968a; }
   /* 結果那一屏:收起標題、表單、測驗入口,只留結果+下載;上面一行可以換生日重看 */
   #result > .again { display: none; position: absolute; top: 12px; left: 14px; z-index: 1; font: 700 12.5px var(--sans); color: var(--sub); background: none; border: 0; padding: 4px; cursor: pointer; animation: none; }
-  body.done .head, body.done #form-card, body.done .quiz-link { display: none; }
+  /* 結果那屏是給人截圖分享的:官網/隱私連結留在輸入那屏就好 */
+  body.done .head, body.done #form-card, body.done .quiz-link, body.done .site-links { display: none; }
   body.done #result > .again { display: block; }
   .site-links a { color: #a0968a; }
   /* 小螢幕(iPhone SE 這類)再收一點 */
-  @media (max-height: 600px) { #score { font-size: 54px; } #quote { font-size: 15px; line-height: 1.65; } #omen { font-size: 13px; } .cta p { font-size: 13px; } .card { border-radius: 20px; } }
+  @media (max-height: 600px) { #score { font-size: 54px; } #quote { font-size: 15px; line-height: 1.65; } #omen { font-size: 13px; } .cta p { font-size: 13px; margin-bottom: 8px; } .card { border-radius: 20px; } .cta .badge img { height: 47px; } .cta .badge img.apple { height: 36px; } .qrfoot { margin-top: 8px; padding-top: 8px; } .qrfoot img { width: 58px; height: 58px; padding: 4px; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
 </style>
-  <script type="module" crossorigin src="./assets/main-6qav0Uat.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <script type="module" crossorigin src="./assets/main-Csu21nn1.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/browser-D35a3XMp.js">
 </head>
 <body>
   <div class="wrap">
@@ -147,7 +153,8 @@
       <p>這只是通用盤。<b>加上出生時辰</b>,<br />分數、吉時、每天的錦囊都變成你專屬的。</p>
       <!-- 官方下載徽章(不改色、不裁切);main.ts 依手機只留對的那一個 -->
       <div class="stores"><a id="store-ios" class="badge" href="#"><img class="apple" src="./badges/app-store.svg" alt="在 App Store 下載" /></a><a id="store-android" class="badge" href="#"><img src="./badges/google-play.png" alt="立即下載 — Google Play" /></a></div>
-      <p class="note">排盤在你的裝置上完成,生日不會被上傳或儲存。</p>
+      <!-- 截圖分享用的導流(跟 App 分享卡底部同一套,命主 11/26:所有分享頁都要有) -->
+      <div class="qrfoot"><img id="qr" alt="掃碼免費看你的今天" /><div><b>今天,你的貓在忙什麼?</b><strong>掃碼讓本喵免費看你的今天</strong><small>同一支手機?截圖 → 相簿長按 QR 就能開</small></div></div>
     </div>
 
     <a class="quiz-link" href="./quiz/">
