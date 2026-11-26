@@ -20,82 +20,98 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .28 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
   body::after { content: ""; position: fixed; inset: -20%; z-index: -1; pointer-events: none;
     background: radial-gradient(36% 28% at 50% 18%, rgba(185, 167, 222, .22), transparent 70%), radial-gradient(30% 24% at 80% 80%, rgba(217, 180, 90, .14), transparent 70%); }
-  .wrap { width: 100%; max-width: 440px; padding: 28px 20px 48px; }
+  /* 2026-11-26 命主:手機要不用捲就一目了然 → 輸入、結果各一屏,尺寸跟著可見高度(svh)縮 */
+  .wrap { width: 100%; max-width: 440px; min-height: 100vh; min-height: 100svh; padding: max(14px, 2.4svh) 18px max(12px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; justify-content: center; gap: min(14px, 2svh); }
   @keyframes up { from { opacity: 0; transform: translateY(16px); } }
   @keyframes float { 50% { transform: translateY(-8px); } }
 
-  .head { text-align: center; animation: up .8s both; }
-  .cat { width: 128px; display: block; margin: 0 auto 6px; animation: float 3.2s ease-in-out infinite; filter: drop-shadow(0 14px 18px rgba(58, 50, 43, .16)); }
-  .kicker { font: 700 12.5px var(--sans); letter-spacing: .32em; color: var(--gold); margin-bottom: 8px; }
-  h1 { font-size: 34px; font-weight: 900; line-height: 1.3; letter-spacing: .04em; }
-  .sub { color: var(--sub); font-size: 15.5px; line-height: 1.9; margin: 10px 0 24px; }
+  /* 喵大師放標題左邊,省掉一整段高度 */
+  .head { display: flex; align-items: center; gap: 12px; animation: up .8s both; }
+  .head .txt { flex: 1; }
+  .cat { width: min(96px, 16svh); flex: none; display: block; animation: float 3.2s ease-in-out infinite; filter: drop-shadow(0 14px 18px rgba(58, 50, 43, .16)); }
+  .kicker { font: 700 12px var(--sans); letter-spacing: .32em; color: var(--gold); margin-bottom: min(6px, 1svh); }
+  h1 { font-size: min(27px, 4.2svh); font-weight: 900; line-height: 1.3; letter-spacing: .04em; }
+  .sub { color: var(--sub); font-size: min(14.5px, 2.3svh); line-height: 1.75; margin-top: min(8px, 1.2svh); }
 
-  .card { background: var(--card); border: 1px solid var(--hair); border-radius: 26px; padding: 22px 20px; margin-bottom: 16px; box-shadow: 0 18px 40px rgba(58, 50, 43, .08); }
+  .card { background: var(--card); border: 1px solid var(--hair); border-radius: 24px; padding: min(20px, 2.8svh) 18px; box-shadow: 0 18px 40px rgba(58, 50, 43, .08); }
   #form-card { animation: up .8s .15s both; transition: opacity .4s; }
-  label, .label { font: 700 12.5px var(--sans); letter-spacing: .16em; color: var(--sub); display: block; margin: 4px 0 8px; }
-  input { width: 100%; padding: 14px 16px; font: 500 20px var(--serif); letter-spacing: .08em; text-align: center; color: var(--ink);
-    border: 1px solid var(--hair); border-radius: 16px; background: #fff; margin-bottom: 18px; }
+  label, .label { font: 700 12px var(--sans); letter-spacing: .16em; color: var(--sub); display: block; margin: 0 0 min(8px, 1.2svh); }
+  input { width: 100%; padding: min(13px, 1.9svh) 16px; font: 500 20px var(--serif); letter-spacing: .08em; text-align: center; color: var(--ink);
+    border: 1px solid var(--hair); border-radius: 16px; background: #fff; margin-bottom: min(16px, 2.2svh); }
   input::placeholder { color: #c4baa9; }
   input:focus { outline: none; border-color: var(--gold2); box-shadow: 0 0 0 4px rgba(217, 180, 90, .18); }
   /* 性別:三顆按鈕取代系統下拉;真正的值還是放在隱藏的 select(main.ts 讀它) */
   #gender { display: none; }
   .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 6px; }
-  .seg button { font: 500 15px var(--serif); color: var(--ink); background: #fff; border: 1px solid var(--hair); border-radius: 14px; padding: 11px 0; cursor: pointer; transition: all .2s; }
+  .seg button { font: 500 15px var(--serif); color: var(--ink); background: #fff; border: 1px solid var(--hair); border-radius: 14px; padding: min(10px, 1.5svh) 0; cursor: pointer; transition: all .2s; }
   .seg button.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  button.go { width: 100%; margin-top: 18px; padding: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+  button.go { width: 100%; margin-top: min(16px, 2.2svh); padding: min(15px, 2.1svh); display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
     font: 700 16.5px var(--serif); letter-spacing: .1em; color: var(--paper); background: var(--ink); border: 0; border-radius: 999px;
     box-shadow: 0 10px 24px rgba(58, 50, 43, .22); transition: transform .1s; }
   button.go:active { transform: scale(.97); }
   button.go svg { width: 22px; height: 25px; flex-shrink: 0; }
   .hidden { display: none !important; }
   .folded { opacity: .5; }
-  #err { color: #b04a3a; font: 500 13px var(--sans); margin-top: 10px; text-align: center; min-height: 1em; }
+  #err { color: #b04a3a; font: 500 13px var(--sans); margin-top: 8px; text-align: center; }
+  #err:empty { display: none; }
 
   /* 結果:像拆開一卷錦囊 */
-  #result { text-align: center; padding: 26px 22px 24px; animation: unroll .9s cubic-bezier(.2, .9, .3, 1.1) both; transform-origin: top center; position: relative; overflow: hidden; }
+  #result { text-align: center; padding: min(22px, 3svh) 20px min(20px, 2.8svh); animation: unroll .9s cubic-bezier(.2, .9, .3, 1.1) both; transform-origin: top center; position: relative; overflow: hidden; }
   @keyframes unroll { from { opacity: 0; transform: perspective(800px) rotateX(-24deg) translateY(20px) scale(.96); } }
   #result::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 160px; background: radial-gradient(60% 100% at 50% 0%, rgba(217, 180, 90, .2), transparent 75%); pointer-events: none; }
   #result > * { position: relative; animation: up .7s both; }
   .score-row { display: flex; align-items: baseline; justify-content: center; gap: 8px; animation-delay: .3s !important; }
-  #score { font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -.02em; }
+  #score { font-size: min(68px, 10svh); font-weight: 900; line-height: 1; letter-spacing: -.02em; }
   .score-row > span:nth-child(2) { font-size: 18px; font-weight: 700; color: var(--sub); }
   .level { font: 800 14px var(--sans); color: #fff; padding: 3px 12px; border-radius: 999px; background: #b5ad9b; align-self: center; margin-left: 4px; }
   .level.ji { background: #b5442f; } .level.shen { background: #44546a; }
-  #paws { display: block; width: 100%; font-size: 15px; letter-spacing: .2em; }
+  #paws { display: block; width: 100%; font-size: 13px; letter-spacing: .2em; margin-top: 2px; }
   .score-row { flex-wrap: wrap; }
-  #ganzhi { font: 500 12.5px var(--sans); color: var(--sub); margin: 10px 0 16px; letter-spacing: .04em; animation-delay: .45s !important; }
-  .rule { height: 1px; background: linear-gradient(90deg, transparent, var(--gold2), transparent); margin: 0 0 16px; }
-  #quote { font-size: 18px; font-weight: 700; line-height: 1.85; margin-bottom: 14px; animation-delay: .6s !important; }
-  #omen { font-size: 14.5px; line-height: 1.8; color: #8a6a08; margin-bottom: 10px; animation-delay: .75s !important; }
+  #ganzhi { font: 500 12.5px var(--sans); color: var(--sub); margin: min(6px, 1svh) 0 min(12px, 1.7svh); letter-spacing: .04em; animation-delay: .45s !important; }
+  .rule { height: 1px; background: linear-gradient(90deg, transparent, var(--gold2), transparent); margin: 0 0 min(14px, 2svh); }
+  #quote { font-size: min(17px, 2.6svh); font-weight: 700; line-height: 1.75; margin-bottom: min(10px, 1.5svh); animation-delay: .6s !important; }
+  #omen { font-size: min(14px, 2.2svh); line-height: 1.7; color: #8a6a08; margin-bottom: min(10px, 1.5svh); animation-delay: .75s !important; }
   #lucky { display: inline-block; font: 700 13px var(--sans); color: #4f6e43; background: rgba(110, 139, 94, .12); padding: 6px 14px; border-radius: 999px; animation-delay: .9s !important; }
 
   .cta { text-align: center; animation: up .8s 1s both; }
-  .cta p { font-size: 15px; color: var(--sub); margin-bottom: 16px; line-height: 1.9; }
+  .cta p { font-size: min(14.5px, 2.2svh); color: var(--sub); margin-bottom: min(14px, 2svh); line-height: 1.7; }
   .cta p b { color: var(--ink); }
-  .cta .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-  .cta a { display: inline-block; padding: 14px 30px; background: var(--gold); color: #fff; font: 700 15.5px var(--serif); letter-spacing: .08em; border-radius: 999px; text-decoration: none; box-shadow: 0 10px 22px rgba(185, 141, 44, .28); }
-  .cta a.hidden { display: none; }
-  .cta .note, .note { font: 500 11.5px var(--sans); color: #a0968a; margin-top: 12px; text-align: center; line-height: 1.7; }
+  .cta .stores { display: flex; gap: 4px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  /* 兩個徽章本體一樣高:Google 的 PNG 上下有透明留白(本體只佔 192/250),所以圖高 = Apple × 1.302 */
+  .cta .stores { gap: 10px; }
+  .cta .badge { display: inline-block; line-height: 0; transition: transform .15s; }
+  .cta .badge:active { transform: scale(.96); }
+  .cta .badge img { height: min(55px, 7.94svh); width: auto; }
+  .cta .badge img.apple { height: min(42px, 6.1svh); }
+  .cta .note, .note { font: 500 11px var(--sans); color: #a0968a; margin-top: min(10px, 1.4svh); text-align: center; line-height: 1.7; }
 
-  .quiz-link { display: flex; align-items: center; gap: 14px; margin: 6px 0 18px; padding: 12px; border-radius: 20px; background: #262748; color: #f6f0e4; text-decoration: none; animation: up .8s .3s both; }
-  .quiz-link img { width: 92px; height: 62px; object-fit: cover; border-radius: 12px; flex: none; }
+  .quiz-link { display: flex; align-items: center; gap: 12px; padding: min(10px, 1.4svh) 12px; border-radius: 20px; background: #262748; color: #f6f0e4; text-decoration: none; animation: up .8s .3s both; }
+  .quiz-link img { width: 76px; height: min(50px, 7svh); object-fit: cover; border-radius: 12px; flex: none; }
   .quiz-link b { display: block; font-size: 16px; font-weight: 900; }
   .quiz-link span { font: 500 12.5px var(--sans); color: rgba(246, 240, 228, .7); }
   .quiz-link i { margin-left: auto; font-style: normal; color: var(--gold2); font-size: 18px; padding-right: 6px; }
-  .site-links { text-align: center; font: 500 12.5px var(--sans); color: #a0968a; margin-top: 8px; }
+  .site-links { text-align: center; font: 500 12px var(--sans); color: #a0968a; }
+  /* 結果那一屏:收起標題、表單、測驗入口,只留結果+下載;上面一行可以換生日重看 */
+  #result > .again { display: none; position: absolute; top: 12px; left: 14px; z-index: 1; font: 700 12.5px var(--sans); color: var(--sub); background: none; border: 0; padding: 4px; cursor: pointer; animation: none; }
+  body.done .head, body.done #form-card, body.done .quiz-link { display: none; }
+  body.done #result > .again { display: block; }
   .site-links a { color: #a0968a; }
+  /* 小螢幕(iPhone SE 這類)再收一點 */
+  @media (max-height: 600px) { #score { font-size: 54px; } #quote { font-size: 15px; line-height: 1.65; } #omen { font-size: 13px; } .cta p { font-size: 13px; } .card { border-radius: 20px; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
 </style>
-  <script type="module" crossorigin src="./assets/main-CBQsXACU.js"></script>
+  <script type="module" crossorigin src="./assets/main-6qav0Uat.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
 </head>
 <body>
   <div class="wrap">
     <div class="head">
       <img class="cat" src="./cat/cat-crystal.webp" alt="喵大師" onerror="this.style.display='none'" />
-      <div class="kicker">喵吉曆 · 免費試算</div>
-      <h1>先讓本喵<br />看看你的今天</h1>
-      <p class="sub">只要生日,不用下載、不用註冊。<br />今天幾分、幾點順,馬上告訴你。</p>
+      <div class="txt">
+        <div class="kicker">喵吉曆 · 免費試算</div>
+        <h1>先讓本喵<br />看看你的今天</h1>
+        <p class="sub">只要生日,不用下載、不用註冊。</p>
+      </div>
     </div>
 
     <div class="card" id="form-card">
@@ -113,12 +129,12 @@
         <option value="male">男</option>
         <option value="na">不方便說</option>
       </select>
-      <button class="go" id="go"><svg viewBox="12 6 40 46" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="27" r="12" fill="#b9a7de"/><path d="M24 45h16M27 50h10M24 40c5 3 11 3 16 0"/><path d="M32 15v-6M42 19l4-4M22 19l-4-4"/><path d="M27 27c2.5-3.4 7.5-3.4 10 0" stroke="#fff9ed" stroke-width="2.2"/></g></svg>本喵幫你看今天</button>
+      <button class="go" id="go">本喵幫你看今天</button>
       <p id="err"></p>
     </div>
 
-    <div class="result-anchor"></div>
     <div class="card hidden" id="result">
+      <button type="button" class="again" id="again">‹ 換生日</button>
       <div class="score-row"><span id="score">--</span><span>分</span><span class="level" id="level">平</span><span id="paws"></span></div>
       <p id="ganzhi"></p>
       <div class="rule"></div>
@@ -128,8 +144,9 @@
     </div>
 
     <div class="card cta hidden" id="cta">
-      <p>這只是通用盤。<br /><b>加上出生時辰</b>,分數、吉時、每天的錦囊<br />全部變成你專屬的——還有一隻記得你大日子的貓。</p>
-      <div class="stores"><a id="store" href="#">下載喵吉曆 App</a><a id="store2" class="hidden" href="#">Google Play</a></div>
+      <p>這只是通用盤。<b>加上出生時辰</b>,<br />分數、吉時、每天的錦囊都變成你專屬的。</p>
+      <!-- 官方下載徽章(不改色、不裁切);main.ts 依手機只留對的那一個 -->
+      <div class="stores"><a id="store-ios" class="badge" href="#"><img class="apple" src="./badges/app-store.svg" alt="在 App Store 下載" /></a><a id="store-android" class="badge" href="#"><img src="./badges/google-play.png" alt="立即下載 — Google Play" /></a></div>
       <p class="note">排盤在你的裝置上完成,生日不會被上傳或儲存。</p>
     </div>
 
