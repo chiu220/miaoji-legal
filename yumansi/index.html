@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <script>if (location.protocol === 'http:' && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) location.replace('https:' + location.href.slice(5))</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<!-- 鈺漫思藝名主頁(2026-11-26):社群簡介的「作品」連結;sameAs 讓搜尋引擎把各帳號認成同一人。不放本名、長相、地點 -->
+<!-- 鈺漫思藝名主頁(2026-11-26):社群簡介的「作品」連結;sameAs 讓搜尋引擎把各帳號認成同一人。不放本名、長相、地點。
+     版面:深色直書大名(A「墨」)+ 籤紙(C「籤」);滑鼠一律用箭頭,不用手指(命主要求) -->
 <title>鈺漫思|紫微・八字</title>
 <meta name="description" content="鈺漫思,研究紫微、八字,把這些老學問做成好用的工具。命理不是拿來怕的,是拿來用的。作品:喵吉曆。">
 <link rel="canonical" href="https://miaoji.nuralog.ai/yumansi/">
@@ -13,14 +14,14 @@
 <meta property="og:description" content="命理不是拿來怕的,是拿來用的。">
 <meta property="og:url" content="https://miaoji.nuralog.ai/yumansi/">
 <meta property="og:image" content="https://miaoji.nuralog.ai/yumansi/avatar.jpg">
-<meta name="theme-color" content="#f6f0e4">
+<meta name="theme-color" content="#14110e">
 <link rel="icon" href="avatar.jpg">
 <link rel="me" href="https://www.threads.net/@yuman.si">
 <link rel="me" href="https://www.instagram.com/yuman.si/">
 <link rel="me" href="https://www.facebook.com/1346638205209009">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -64,61 +65,159 @@
 }
 </script>
 <style>
-:root {
-  --paper: #f6f0e4; --card: #fffdf8; --ink: #3a322b; --sub: #7a7064; --hair: rgba(58, 50, 43, .14);
-  --gold: #b98d2c; --gold2: #d9b45a; --seal: #b3322b;
-  --serif: "Noto Serif TC", "Songti TC", serif; --sans: "PingFang TC", "Noto Sans TC", sans-serif;
-}
+:root { --bg: #14110e; --ink: #efe6d4; --sub: #a89d8c; --mute: #6f665a; --gold: #c9a24a; --red: #c8392e; --hair: rgba(239, 230, 212, .12);
+    --serif: "Noto Serif TC", "Songti TC", serif; --kai: "LXGW WenKai TC", "Kaiti TC", "BiauKai", serif; --sans: "PingFang TC", "Noto Sans TC", sans-serif; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--serif); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; min-height: 100vh; }
-a { color: inherit; }
-main { max-width: 560px; margin: 0 auto; padding: 56px 16px 40px; text-align: center; }
-.avatar { width: 132px; height: 132px; border-radius: 50%; display: block; margin: 0 auto 22px; box-shadow: 0 16px 36px rgba(58, 50, 43, .18); }
-h1 { font-size: 40px; font-weight: 900; letter-spacing: .14em; }
-.tag { font: 700 13px var(--sans); letter-spacing: .32em; color: var(--gold); margin-top: 8px; }
-.motto { font-size: 21px; font-weight: 700; line-height: 1.7; margin: 26px 0 14px; }
-.intro { color: var(--sub); font-size: 16px; line-height: 1.95; }
-.divider { display: flex; align-items: center; gap: 14px; color: var(--gold); font: 700 12px var(--sans); letter-spacing: .3em; margin: 44px auto 18px; }
-.divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold2), transparent); }
-.work { display: flex; gap: 16px; align-items: center; text-align: left; background: var(--card); border: 1px solid var(--hair); border-radius: 20px; padding: 18px; text-decoration: none; }
-.work img { width: 64px; height: 64px; border-radius: 15px; flex: none; }
-.work h2 { font-size: 19px; font-weight: 900; letter-spacing: .06em; }
-.work p { font: 500 14px/1.7 var(--sans); color: var(--sub); margin-top: 3px; }
-.work .go { margin-left: auto; color: var(--gold); font-size: 20px; }
-.soon { font: 500 13.5px var(--sans); color: #a0968a; margin-top: 12px; }
-.links { display: flex; flex-direction: column; gap: 10px; }
-.links a { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--ink); text-decoration: none; font: 700 15px var(--sans); letter-spacing: .06em; transition: background .15s; }
-.links a:hover { background: rgba(58, 50, 43, .05); }
-.links svg { width: 19px; height: 19px; }
-footer { text-align: center; font: 500 12px/1.8 var(--sans); color: #a0968a; padding: 28px 16px 40px; }
+body { background: var(--bg); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; cursor: default; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9; opacity: .35; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E"); }
+
+/* ── 第一屏:直書大名、十二地支環、蓋印 ── */
+.hero { position: relative; min-height: 100svh; display: grid; place-items: center; overflow: hidden; }
+.hero::before { content: ""; position: absolute; width: 120vmin; height: 120vmin; border-radius: 50%; background: radial-gradient(circle, rgba(201, 162, 74, .16), transparent 62%); top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.ring { position: absolute; width: min(86vmin, 620px); aspect-ratio: 1; border: 1px solid var(--hair); border-radius: 50%; animation: spin 120s linear infinite; }
+.ring span { position: absolute; left: 50%; top: 50%; font: 400 13px var(--serif); color: var(--mute); transform-origin: 0 0; }
+@keyframes spin { to { transform: rotate(360deg) } }
+.name { position: relative; display: flex; gap: clamp(14px, 3vw, 28px); align-items: flex-start; }
+.name h1 { writing-mode: vertical-rl; font-size: clamp(92px, 24vw, 176px); font-weight: 900; line-height: 1; letter-spacing: .06em; text-shadow: 0 0 60px rgba(201, 162, 74, .18); }
+.name .side { writing-mode: vertical-rl; font: 700 clamp(14px, 3.6vw, 18px) var(--serif); letter-spacing: .5em; color: var(--gold); padding-top: .4em; }
+.name .seal { position: absolute; right: -18px; bottom: -34px; width: clamp(64px, 16vw, 104px); border-radius: 50%; transform: rotate(-8deg); box-shadow: 0 10px 30px rgba(0, 0, 0, .5); animation: stamp .8s cubic-bezier(.2, 1.5, .4, 1) .5s both; }
+@keyframes stamp { from { transform: rotate(-8deg) scale(1.8); opacity: 0 } }
+.scroll { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); font: 500 11px var(--sans); letter-spacing: .4em; color: var(--mute); }
+.scroll::after { content: ""; display: block; width: 1px; height: 34px; background: linear-gradient(var(--gold), transparent); margin: 10px auto 0; }
+
+section { max-width: 760px; margin: 0 auto; padding: 100px 20px; }
+.label { font: 700 12px var(--sans); letter-spacing: .5em; color: var(--gold); margin-bottom: 28px; }
+
+/* ── 籤詩:跟第一屏同一套黑底金線,捲到才展開,字一行行浮出,最後蓋印 ── */
+.slipwrap { max-width: 520px; padding-top: 30px; }
+.slip { position: relative; font-family: var(--kai); padding: 10px; border: 1px solid rgba(201, 162, 74, .55); background: linear-gradient(rgba(201, 162, 74, .05), transparent 40%);
+  clip-path: inset(0 0 100% 0); transition: clip-path 1.3s cubic-bezier(.6, 0, .2, 1); }
+.slipwrap.in .slip { clip-path: inset(0 0 0 0); }
+.frame { border: 1px solid rgba(201, 162, 74, .3); padding: 18px 18px 22px; }
+.band { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid rgba(201, 162, 74, .3); color: var(--gold); font: 700 12px var(--sans); letter-spacing: .4em; }
+.poem { display: flex; flex-direction: row-reverse; justify-content: center; align-items: center; gap: clamp(14px, 4vw, 24px); padding: 34px 0 30px; }
+.poem .col { writing-mode: vertical-rl; font-size: clamp(22px, 6vw, 28px); line-height: 1.3; letter-spacing: .26em; color: var(--ink); opacity: 0; filter: blur(5px); transition: opacity .9s, filter .9s; }
+.poem .col em { font-style: normal; color: var(--red); }
+.poem .mid { width: 1px; align-self: stretch; background: linear-gradient(transparent, var(--red), transparent); margin: 0 clamp(4px, 2vw, 12px); }
+.slipwrap.in .poem .col { opacity: 1; filter: none; }
+.slipwrap.in .poem .col:nth-child(1) { transition-delay: 1.1s } .slipwrap.in .poem .col:nth-child(2) { transition-delay: 1.35s }
+.slipwrap.in .poem .col:nth-child(4) { transition-delay: 1.6s } .slipwrap.in .poem .col:nth-child(5) { transition-delay: 1.85s }
+.foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(201, 162, 74, .3); padding-top: 14px; }
+.foot .k { font: 500 13px var(--sans); color: var(--sub); letter-spacing: .2em; }
+.foot .k b { font: 700 17px var(--kai); color: var(--red); margin-right: 8px; letter-spacing: .1em; }
+.foot img { width: 58px; border-radius: 50%; box-shadow: 0 8px 20px rgba(0, 0, 0, .5); transform: rotate(-10deg) scale(2); opacity: 0; transition: transform .6s cubic-bezier(.2, 1.5, .4, 1) 2.3s, opacity .3s 2.3s; }
+.slipwrap.in .foot img { transform: rotate(-10deg); opacity: 1; }
+
+/* ── 解曰:怕被劃掉、用被圈起來 ── */
+.creed h2 { font-size: clamp(36px, 9vw, 72px); font-weight: 900; line-height: 1.35; letter-spacing: .02em; }
+.x { position: relative; color: var(--mute); }
+.x::after { content: ""; position: absolute; left: -6%; right: -6%; top: 52%; height: .09em; background: var(--red); transform: rotate(-8deg) scaleX(0); transform-origin: left; transition: transform .6s .3s cubic-bezier(.6, 0, .2, 1); }
+.o { position: relative; }
+.o::after { content: ""; position: absolute; inset: -.12em -.16em; border: .06em solid var(--red); border-radius: 50%; transform: rotate(-6deg) scale(.4); opacity: 0; transition: all .5s .9s cubic-bezier(.2, 1.4, .4, 1); }
+.in .x::after { transform: rotate(-8deg) scaleX(1); }
+.in .o::after { transform: rotate(-6deg) scale(1); opacity: 1; }
+.creed p { margin-top: 40px; font-size: 18px; line-height: 2.1; color: var(--sub); max-width: 34em; }
+
+/* ── 作品:滿版圖 ── */
+.work { position: relative; display: block; border-radius: 6px; overflow: hidden; aspect-ratio: 4 / 5; max-height: 640px; width: 100%; }
+@media (min-width: 700px) { .work { aspect-ratio: 16 / 10; } }
+.work img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transition: transform 1.2s cubic-bezier(.2, .8, .2, 1); }
+.work:hover img { transform: scale(1.04); }
+.work::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 35%, rgba(20, 17, 14, .92)); }
+.work .t { position: absolute; left: 24px; right: 24px; bottom: 24px; z-index: 1; }
+.work .no { font: 700 12px var(--sans); letter-spacing: .4em; color: var(--gold); }
+.work h3 { font-size: clamp(38px, 9vw, 60px); font-weight: 900; letter-spacing: .08em; margin: 6px 0 8px; }
+.work p { font: 400 15px/1.8 var(--sans); color: #d8cfbf; max-width: 30em; }
+.work .go { display: inline-block; margin-top: 16px; font: 700 14px var(--sans); border: 1px solid rgba(239, 230, 212, .5); padding: 10px 18px; border-radius: 999px; transition: background .3s, color .3s; }
+.work:hover .go { background: var(--ink); color: var(--bg); }
+.more { margin-top: 18px; font: 400 14px var(--sans); color: var(--mute); }
+
+/* ── 找到我 ── */
+.links a { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 24px 0; border-top: 1px solid var(--hair); transition: padding .3s, color .3s; }
+.links a:last-child { border-bottom: 1px solid var(--hair); }
+.links a:hover { padding-left: 12px; color: var(--gold); }
+.links b { font-size: clamp(26px, 6vw, 40px); font-weight: 900; }
+.links span { font: 400 14px var(--sans); color: var(--sub); white-space: nowrap; }
+footer { text-align: center; padding: 30px 20px 50px; font: 400 12px/1.9 var(--sans); color: var(--mute); }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s cubic-bezier(.2, .8, .2, 1), transform 1s cubic-bezier(.2, .8, .2, 1); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .ring, .name .seal { animation: none }
+  .reveal, .slip, .poem .col, .foot img { opacity: 1 !important; transform: none !important; clip-path: none !important; filter: none !important; transition: none !important; }
+  .foot img { transform: rotate(-10deg) !important; }
+}
 </style>
 </head>
 <body>
-<main>
-  <img class="avatar" src="avatar.jpg" alt="鈺漫思印章頭像" width="132" height="132">
-  <h1>鈺漫思</h1>
-  <div class="tag">紫微・八字</div>
-  <p class="motto">命理不是拿來怕的,是拿來用的。</p>
-  <p class="intro">研究紫微、八字這些年,我覺得它們最有用的地方,不是告訴你會發生什麼,是幫你在日常裡做比較好的決定。所以我開始把它們做成工具。</p>
-
-  <div class="divider">作品</div>
-  <a class="work" href="/">
-    <img src="miaoji.jpg" alt="喵吉曆圖示">
-    <div>
-      <h2>喵吉曆</h2>
-      <p>一隻嘴很壞的貓,每天用你的生日幫你挑時機。分數是規則算的,同一天同一個生日算一百次都一樣。</p>
-    </div>
-    <span class="go">›</span>
-  </a>
-  <p class="soon">之後還會有更多。</p>
-
-  <div class="divider">找到我</div>
-  <div class="links">
-    <a href="https://www.threads.net/@yuman.si" rel="me noopener" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M16.5 11.2c-.3-2.6-2-3.9-4.3-3.9-2.2 0-3.6 1.3-3.9 3"/><path d="M12.4 11c3.3 0 5.4 1.3 5.4 3.6 0 2.6-2.4 4.4-5.7 4.4C7.8 19 5 16.2 5 12s2.8-7 7.1-7c3.2 0 5.5 1.5 6.4 4.3"/><path d="M14.5 13c0 1.9-1.2 3-2.9 3-1.4 0-2.3-.8-2.3-1.9 0-1.4 1.4-2.2 5.2-2.1"/></svg>Threads @yuman.si</a>
-    <a href="https://www.instagram.com/yuman.si/" rel="me noopener" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg>Instagram @yuman.si</a>
-    <a href="https://www.facebook.com/1346638205209009" rel="me noopener" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14.5 8H16V4.8h-2.3c-2.4 0-3.6 1.5-3.6 3.8V11H8v3h2.1v6.2h3.1V14h2.3l.4-3h-2.7V9.2c0-.8.4-1.2 1.3-1.2z"/></svg>Facebook 粉專</a>
+<header class="hero">
+  <div class="ring" id="ring"></div>
+  <div class="name">
+    <div class="side">紫微・八字</div>
+    <h1>鈺漫思</h1>
+    <img class="seal" src="avatar.jpg" alt="鈺漫思印章">
   </div>
-</main>
-<footer>© 2026 鈺漫思 · 內容為傳統命理觀點,重大決策請以專業意見為準</footer>
+  <div class="scroll">往下</div>
+</header>
+
+<section class="slipwrap" data-reveal>
+  <div class="slip">
+    <div class="frame">
+      <div class="band"><span>鈺漫思 籤</span><span>第壹號</span></div>
+      <div class="poem">
+        <div class="col">紫微八字細推詳</div>
+        <div class="col">古法今成日用方</div>
+        <div class="mid"></div>
+        <div class="col">命理非為人生<em>怕</em></div>
+        <div class="col">拿來好<em>用</em>最吉祥</div>
+      </div>
+      <div class="foot">
+        <div class="k"><b>上上</b>宜:挑時機・做決定</div>
+        <img src="avatar.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="creed reveal" data-reveal>
+  <div class="label">解曰</div>
+  <h2>命理不是拿來<span class="x">怕</span>的,<br>是拿來<span class="o">用</span>的。</h2>
+  <p>研究紫微、八字這些年,我覺得它們最有用的地方,不是告訴你會發生什麼,是幫你在日常裡做比較好的決定。所以我開始把它們做成工具。</p>
+</section>
+
+<section class="reveal" data-reveal>
+  <div class="label">作品</div>
+  <a class="work" href="/">
+    <img src="../art/hero.webp" alt="喵吉曆的喵大師坐在攤開的書上揮手" loading="lazy">
+    <div class="t">
+      <div class="no">No.01</div>
+      <h3>喵吉曆</h3>
+      <p>一隻嘴很壞的貓,每天用你的生日幫你挑時機。分數是規則算的,同一天同一個生日算一百次都一樣。</p>
+      <span class="go">去看看 →</span>
+    </div>
+  </a>
+  <p class="more">No.02,正在做。</p>
+</section>
+
+<section class="reveal" data-reveal>
+  <div class="label">找到我</div>
+  <div class="links">
+    <a href="https://www.threads.net/@yuman.si" target="_blank" rel="me noopener"><b>Threads</b><span>@yuman.si ↗</span></a>
+    <a href="https://www.instagram.com/yuman.si/" target="_blank" rel="me noopener"><b>Instagram</b><span>@yuman.si ↗</span></a>
+    <a href="https://www.facebook.com/1346638205209009" target="_blank" rel="me noopener"><b>Facebook</b><span>粉絲專頁 ↗</span></a>
+  </div>
+</section>
+<footer>© 2026 鈺漫思<br>內容為傳統命理觀點,重大決策請以專業意見為準</footer>
+<script>
+const ring = document.getElementById('ring')
+'子丑寅卯辰巳午未申酉戌亥'.split('').forEach((c, i) => { const s = document.createElement('span'); s.textContent = c; s.style.transform = `rotate(${i * 30 - 90}deg) translate(calc(min(43vmin, 310px) + 10px)) rotate(90deg)`; ring.appendChild(s) })
+const els = document.querySelectorAll('[data-reveal]')
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }), { threshold: .2 })
+  els.forEach(el => io.observe(el))
+} else els.forEach(el => el.classList.add('in'))
+</script>
 </body>
 </html>
