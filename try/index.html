@@ -103,10 +103,29 @@
   body.done #result > .again { display: block; }
   .site-links a { color: #a0968a; }
   /* 小螢幕(iPhone SE 這類)再收一點 */
-  @media (max-height: 600px) { #score { font-size: 54px; } #quote { font-size: 15px; line-height: 1.65; } #omen { font-size: 13px; } .cta p { font-size: 13px; margin-bottom: 8px; } .card { border-radius: 20px; } .cta .badge img { height: 47px; } .cta .badge img.apple { height: 36px; } .qrfoot { margin-top: 8px; padding-top: 8px; } .qrfoot img { width: 58px; height: 58px; padding: 4px; } }
+  @media (max-height: 600px) { #score { font-size: 54px; } #quote { font-size: 15px; line-height: 1.65; } #omen { font-size: 13px; } .cta p { font-size: 13px; margin-bottom: 8px; } .card { border-radius: 20px; } .cta .badge img { height: 47px; } .cta .badge img.apple { height: 36px; } .qrfoot { margin-top: 8px; padding-top: 8px; } .qrfoot img { width: 58px; height: 58px; padding: 4px; } #result .acts { margin-top: 8px; } .act { padding: 8px; font-size: 13.5px; } #quote { margin-bottom: 6px; } }
+  /* 結果卡底下兩顆:存成圖片、複製連結 */
+  #result .acts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: min(12px, 1.7svh); animation-delay: 1s !important; }
+  .act { font: 700 14.5px var(--serif); letter-spacing: .06em; padding: min(11px, 1.6svh) 8px; border-radius: 999px; border: 0; background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); cursor: pointer; width: 100%; }
+  .act.dark { background: var(--ink); color: var(--paper); box-shadow: none; }
+  .act:active { transform: scale(.97); }
+  .sheet { position: fixed; inset: 0; z-index: 60; background: rgba(58, 50, 43, .55); display: none; align-items: center; justify-content: center; padding: 16px; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  .sheet.on { display: flex; }
+  .sheet-box { width: 100%; max-width: 360px; max-height: 100%; overflow-y: auto; background: var(--paper); border-radius: 24px; padding: 16px; text-align: center; display: flex; flex-direction: column; gap: 10px; }
+  .sheet-box img { width: 62%; margin: 0 auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(58, 50, 43, .2); -webkit-touch-callout: default; user-select: auto; }
+  .sheet-tip { font-size: 14px; color: var(--sub); }
+  .sheet-tip b { color: var(--ink); }
+  .sheet-inapp { background: rgba(185, 141, 44, .12); border-radius: 14px; padding: 12px; font-size: 13.5px; line-height: 1.7; color: var(--sub); }
+  .sheet-inapp b { color: var(--ink); }
+  .sheet-inapp .act { margin-top: 8px; }
+  .close { background: none; border: 0; font: 500 14px var(--serif); color: var(--sub); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+  .link-text { font: 600 15px var(--sans); color: var(--ink); background: #fff; border: 1px solid var(--hair); border-radius: 12px; padding: 12px; word-break: break-all; -webkit-user-select: all; user-select: all; -webkit-touch-callout: default; }
+  .toast { position: fixed; left: 50%; bottom: 40px; transform: translate(-50%, 20px); background: var(--ink); color: var(--paper); font: 500 14px var(--sans); padding: 10px 18px; border-radius: 999px; opacity: 0; transition: all .3s; z-index: 70; pointer-events: none; white-space: nowrap; }
+  .toast.on { opacity: 1; transform: translate(-50%, 0); }
+  @media (max-height: 600px) { #result .acts { margin-top: 8px; gap: 6px; } .act { padding: 7px 8px; font-size: 13.5px; } .cta p { margin-bottom: 6px; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
 </style>
-  <script type="module" crossorigin src="./assets/main-Csu21nn1.js"></script>
+  <script type="module" crossorigin src="./assets/main-CHngwu3V.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/browser-D35a3XMp.js">
 </head>
 <body>
@@ -147,6 +166,8 @@
       <p id="quote"></p>
       <p id="omen"></p>
       <p id="lucky"></p>
+      <!-- 命主 11/27:跟繪本測驗一樣,結果要能存成圖、複製連結 -->
+      <div class="acts"><button type="button" class="act dark" id="saveImg">存成圖片</button><button type="button" class="act" id="copyLink">複製連結</button></div>
     </div>
 
     <div class="card cta hidden" id="cta">
@@ -165,6 +186,28 @@
 
     <p class="site-links"><a href="../">喵吉曆官網</a> · <a href="../privacy.html">隱私權政策</a> · <a href="../terms.html">使用條款</a></p>
   </div>
+  <div class="sheet" id="sheet">
+    <div class="sheet-box">
+      <img id="sheetImg" alt="我的今天" />
+      <p class="sheet-tip" id="sheetTip">也可以<b>長按圖片</b> → 加入照片</p>
+      <div class="sheet-inapp hidden" id="sheetInApp">
+        <p>你現在是在 IG / LINE 裡面開的,這裡沒辦法存圖。<br><b>改用 Safari 或 Chrome 打開</b>就能存到相簿。</p>
+        <button class="act dark" id="openExternal">用瀏覽器打開</button>
+      </div>
+      <button class="act dark" id="sheetShare">存到相簿 / 分享到 IG</button>
+      <button class="act" id="sheetDl">下載圖片</button>
+      <button class="act" id="sheetCopy">複製連結</button>
+      <button class="close" id="sheetClose">關閉</button>
+    </div>
+  </div>
+  <div class="sheet" id="linkSheet">
+    <div class="sheet-box">
+      <p class="sheet-tip"><b>長按下面的連結 → 拷貝</b>,貼給朋友</p>
+      <p class="link-text" id="linkText"></p>
+      <button class="close" id="linkClose">關閉</button>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
   <script>
     // 性別三顆按鈕 → 寫回隱藏的 select(main.ts 讀 select 的值)
     document.getElementById('seg').addEventListener('click', e => {
