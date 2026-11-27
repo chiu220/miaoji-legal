@@ -205,7 +205,6 @@
   .toast { position: fixed; left: 50%; bottom: 40px; transform: translate(-50%, 20px); background: var(--ink); color: var(--paper); font: 500 14px var(--sans); padding: 10px 18px;
     border-radius: 999px; opacity: 0; transition: all .3s; z-index: 40; pointer-events: none; white-space: nowrap; }
   .toast.on { opacity: 1; transform: translate(-50%, 0); }
-  .hidden { display: none !important; }
   .sheet { position: fixed; inset: 0; z-index: 35; background: rgba(58, 50, 43, .55); display: none; align-items: center; justify-content: center; padding: 16px;
     -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
   .sheet.on { display: flex; animation: pageIn .3s both; }
@@ -213,6 +212,11 @@
   .sheet-box img { width: 62%; margin: 0 auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(58, 50, 43, .2); -webkit-touch-callout: default; user-select: auto; }
   .sheet-tip { font-size: 14px; color: var(--sub); }
   .sheet-tip b { color: var(--ink); }
+  .sheet-inapp { background: rgba(185, 141, 44, .12); border-radius: 14px; padding: 12px; font-size: 13.5px; line-height: 1.7; color: var(--sub); }
+  .sheet-inapp b { color: var(--ink); }
+  .sheet-inapp .btn { margin-top: 8px; }
+  .link-text { font: 600 15px var(--sans); color: var(--ink); background: #fff; border: 1px solid var(--hair); border-radius: 12px; padding: 12px; word-break: break-all; -webkit-user-select: all; user-select: all; -webkit-touch-callout: default; }
+  .hidden { display: none !important; }
   .sheet-box .btn { width: 100%; font-size: 15px; padding: 12px; }
   .sheet-box .again { display: block; margin: 0 auto; font: 500 14px var(--serif); color: var(--sub); text-underline-offset: 4px; }
 
@@ -232,7 +236,7 @@
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
 </style>
-  <script type="module" crossorigin src="../assets/quiz-9BDI5Dv_.js"></script>
+  <script type="module" crossorigin src="../assets/quiz-s6tbCTJ4.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/browser-D35a3XMp.js">
 </head>
 <body>
@@ -284,12 +288,23 @@
   <div class="sheet" id="sheet">
     <div class="sheet-box">
       <img id="sheetImg" alt="我的時機貓限動圖" />
-      <p class="sheet-tip"><b>長按圖片</b> → 加入照片 / 下載圖片</p>
-      <button class="btn" id="sheetShare">分享到 IG 限動等 App</button>
+      <p class="sheet-tip" id="sheetTip">也可以<b>長按圖片</b> → 加入照片</p>
+      <div class="sheet-inapp hidden" id="sheetInApp">
+        <p>你現在是在 IG / LINE 裡面開的,這裡沒辦法存圖。<br><b>改用 Safari 或 Chrome 打開</b>就能存到相簿。</p>
+        <button class="btn" id="openExternal">用瀏覽器打開</button>
+      </div>
+      <button class="btn" id="sheetShare">存到相簿 / 分享到 IG</button>
       <button class="btn ghost" id="sheetDl">下載圖片</button>
       <button class="again" id="sheetClose">關閉</button>
     </div>
   </div>
   <div class="toast" id="toast"></div>
+  <div class="sheet" id="linkSheet">
+    <div class="sheet-box">
+      <p class="sheet-tip"><b>長按下面的連結 → 拷貝</b>,貼給朋友</p>
+      <p class="link-text" id="linkText"></p>
+      <button class="again" id="linkClose">關閉</button>
+    </div>
+  </div>
 </body>
 </html>
